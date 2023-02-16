@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-<#REPO-NAME#> = {editable = true, path = "."}
+molgenis-py-eucan-connect = {editable = true, path = "."}
 
 [dev-packages]
 pytest = "*"

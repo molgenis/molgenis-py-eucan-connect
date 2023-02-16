@@ -1,9 +1,5 @@
 # Changelog
 
-## Version 0.2 (development)
-- Update to Python 3.10
-- Update pre-commit hooks
-
-## Version 0.1
-
+## Version 0.1 (development)
 - Project started from template repository molgenis/molgenis-template-py
+- Project files adapted to molgenis-py-eucan-connect repo
