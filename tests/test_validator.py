@@ -9,7 +9,7 @@ def test_validate(mica_catalogue_data):
     warnings = validator.validate()
 
     assert warnings == [
-        EucanWarning(message="Study mica:studyID:mcTwo has no objectives"),
-        EucanWarning(message="Study mica:studyID:noC has no start_year"),
-        EucanWarning(message="Study mica:studyID:noC has no countries"),
+        EucanWarning(message="Study mica_url/study/mcTwo has no objectives"),
+        EucanWarning(message="Study mica_url/study/noC has no start_year"),
+        EucanWarning(message="Study mica_url/study/noC has no countries"),
     ]

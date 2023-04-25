@@ -29,6 +29,8 @@ class Validator:
                 if column not in row or (
                     type(row[column]) not in (bool, int) and len(row[column]) == 0
                 ):
-                    warning = EucanWarning(f"Study {row['id']} has no {column}")
+                    warning = EucanWarning(
+                        f"Study {row['source_data']} has no {column}"
+                    )
                     self.printer.print_warning(warning)
                     self.warnings.append(warning)
