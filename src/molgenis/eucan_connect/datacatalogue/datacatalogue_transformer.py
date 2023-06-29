@@ -39,8 +39,8 @@ class Transformer:
         # Add id and source_data
         df["id"] = df["id"].str.replace(" ", "_", regex=False)
         source_url_part = (
-            "/catalogue/catalogue3/#/networks-catalogue/"
-            + self.catalogue.description
+            "/catalogue/catalogue/#/networks-catalogue/"
+            + self.catalogue.networks
             + "/cohorts/"
         )
         df["source_data"] = self.catalogue.catalogue_url + source_url_part + df["id"]
