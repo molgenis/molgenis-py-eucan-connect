@@ -23,6 +23,9 @@ class Transformer:
         df_eucan_studies = pd.DataFrame()
 
         for study in source_data:
+            if type(study) != dict:  # for some reason the last rows contain plain text
+                continue
+
             df_study = self._eucan_studies(study)
 
             df_eucan_studies = pd.concat([df_eucan_studies, df_study])
