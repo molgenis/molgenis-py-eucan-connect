@@ -1,6 +1,6 @@
 from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import DefaultDict, List, Optional
+from typing import DefaultDict, List
 
 import requests
 
@@ -41,7 +41,7 @@ class ErrorReport:
     catalogue_warnings: DefaultDict[Catalogue, List[EucanWarning]] = field(
         default_factory=lambda: defaultdict(list)
     )
-    error: Optional[EucanError] = None
+    error: EucanError | None = None
 
     def add_catalogue_error(self, catalogue: Catalogue, error: EucanError):
         self.catalogue_errors[catalogue] = error

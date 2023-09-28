@@ -32,15 +32,13 @@ class Transformer:
 
                 # Add countries to df_study
                 countries = df_populations["selectionCriteria.countriesIso"].tolist()
-                df_study.at[0, "countries"] = list(
-                    set(
-                        [
-                            country
-                            for country_list in countries
-                            for country in country_list
-                        ]
-                    )
-                )
+                countries = [
+                    country for country_list in countries for country in country_list
+                ]
+                if len(countries) == 0:
+                    countries = [df_populations["selectionCriteria.territory.en"][0]]
+
+                df_study.at[0, "countries"] = list(set(countries))
             except (KeyError, TypeError):
                 pass
 

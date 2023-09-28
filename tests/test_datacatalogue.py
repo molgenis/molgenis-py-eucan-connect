@@ -20,7 +20,9 @@ def source_collector_init():
 def test_datacatalogue_assembler(
     eucan, datacatalogue_data, datacatalogue_transformed, source_collector_init
 ):
-    catalogue = Catalogue("TN", "DataCatalogue", "dc_url", "TestNetwork")
+    catalogue = Catalogue(
+        "TN", "DataCatalogue", "dc_url", "TestNetwork", networks="TestNetwork"
+    )
     assembler = Assembler(eucan.printer)
     assembler._get_source_data = MagicMock(side_effect=assembler._get_source_data)
     assembler._transform_data = MagicMock(side_effect=assembler._transform_data)

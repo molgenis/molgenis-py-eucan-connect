@@ -1,6 +1,7 @@
 import re
 
 import pandas as pd
+from unidecode import unidecode
 
 from molgenis.eucan_connect.errors import EucanWarning
 from molgenis.eucan_connect.importer import ImportingState
@@ -9,7 +10,7 @@ from molgenis.eucan_connect.printer import Printer
 
 class Transformer:
     """
-    The published tables have a few extra attributes that the staging tables do not.
+    The published tables have a few extra attributes that the staging tables don't have.
     This class is responsible for adding those attributes so the staging tables can be
     published correctly.
     """
@@ -29,10 +30,12 @@ class Transformer:
         1. Replaces, if necessary, the country codes in the country columns
         by the right IDs
         2. Removes html tags from descriptions etc
+        3. Adds the label column (study name without accents on the first letter)
         """
 
         self._set_country_codes()
         self._remove_html_tags()
+        self._add_name_label()
 
         return self.warnings
 
@@ -68,3 +71,12 @@ class Transformer:
             self.source_data[column] = self.source_data[column].apply(
                 lambda x: re.sub("<[^<]+?>", "", x) if x == x else x
             )
+
+    def _add_name_label(self):
+        """
+        Add label column (study name without accents on the first letter)
+        """
+        self.printer.print("Add label column")
+        self.source_data["studies_label"] = self.source_data[
+            "studies_study_name"
+        ].apply(lambda x: unidecode(x[0]) + x[1:])

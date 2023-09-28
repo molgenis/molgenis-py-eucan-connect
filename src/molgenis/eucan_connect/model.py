@@ -3,7 +3,7 @@ from abc import ABC
 from collections import OrderedDict
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from molgenis.eucan_connect.table_info import TableType
 from molgenis.eucan_connect.utils import to_ordered_dict
@@ -71,9 +71,9 @@ class Catalogue:
     code: str
     catalogue_type: str
     catalogue_url: str
-    description: Optional[str] = None
-    catalogue_query: Optional[str] = None
-    networks: Optional[str] = None
+    description: str
+    catalogue_query: str | None = None
+    networks: str | None = None
 
     _classifiers = {
         TableType.PERSONS: "contactID",
@@ -91,7 +91,7 @@ class Catalogue:
         :return: the id prefix
         """
         classifier = self._classifiers[table_type]
-        source = self.description.lower().replace(" ", "")
+        source = self.description.lower().replace(" ", "-")
         return f"{source}:{classifier}:"
 
     @staticmethod
