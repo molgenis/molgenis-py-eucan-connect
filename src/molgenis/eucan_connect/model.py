@@ -96,7 +96,7 @@ class Catalogue:
 
     @staticmethod
     def of(code: str):
-        return Catalogue(code, "url", "type")
+        return Catalogue(code, "url", "type", "description")
 
     def __eq__(self, other: object) -> bool:
         if isinstance(other, Catalogue):
